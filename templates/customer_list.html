@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Customers{% endblock %}
+{% block content %}
+
+<a class="btn btn-primary" style="float: right" href="/add/">Add a Customer</a></p>
+
+<h1>Customers</h1>
+<form class="d-flex mb-3" id="searchForm" role="search">
+  <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+    name="search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<ul id="customerList" style="column-count: 4">
+  {% for customer in customers %}
+  <li>
+    <a href="/{{ customer.id }}/">{{ customer.fullName() }}</a>
+    {% if customer.num_reservations %}
+    {{customer.num_reservations}} Reservations
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
